@@ -36,6 +36,18 @@ app.get("/api/persons", (req, rsp) => {
   rsp.status(200).json(phonebook.persons);
 });
 
+app.get("/api/persons/:id", (req, rsp) => {
+  const requestId = Number(req.params.id);
+  const personData = phonebook.persons.find(
+    (person) => person.id === requestId
+  );
+
+  if (personData) {
+    return rsp.status(200).json(personData);
+  }
+  rsp.status(404).json({ error: "item not found" });
+});
+
 app.get("/info", (req, rsp) => {
   const phonebookLen = phonebook.persons.length;
   const now = new Date();
