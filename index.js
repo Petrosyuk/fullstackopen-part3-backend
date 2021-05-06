@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = 3001;
 
-const persons = {
+const phonebook = {
   persons: [
     {
       name: "Arto Hellas",
@@ -33,7 +33,15 @@ const persons = {
 };
 
 app.get("/api/persons", (req, rsp) => {
-  rsp.status(200).json(persons.persons);
+  rsp.status(200).json(phonebook.persons);
+});
+
+app.get("/info", (req, rsp) => {
+  const phonebookLen = phonebook.persons.length;
+  const now = new Date();
+
+  rsp.send(`<h3> Phoneboook has info for ${phonebookLen} people</h3>
+            <br> ${now}`);
 });
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
