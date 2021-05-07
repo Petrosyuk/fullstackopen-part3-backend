@@ -1,0 +1,216 @@
+[
+  {
+    "customer_no": "0154272",
+    "customer_name": "Rafaela Vega",
+    "meters": [
+      {
+        "cust_account_id": 47582,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "POWER",
+        "meter_rce": 0.259395
+      },
+      {
+        "cust_account_id": 47581,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "GAS",
+        "meter_rce": 0.39971
+      }
+    ]
+  },
+  {
+    "customer_no": "0159394",
+    "customer_name": "Estaban Zalazar",
+    "meters": [
+      {
+        "cust_account_id": 49937,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "GAS",
+        "meter_rce": 0.15425
+      },
+      {
+        "cust_account_id": 49936,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "POWER",
+        "meter_rce": 0.397275
+      }
+    ]
+  },
+  {
+    "customer_no": "0161346",
+    "customer_name": "Rosario Burgos",
+    "meters": [
+      {
+        "cust_account_id": 50959,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "POWER",
+        "meter_rce": 0.436923
+      },
+      {
+        "cust_account_id": 50960,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "GAS",
+        "meter_rce": 0.04444
+      }
+    ]
+  },
+  {
+    "customer_no": "0161710",
+    "customer_name": "Luis Santos",
+    "meters": [
+      {
+        "cust_account_id": 51136,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "POWER",
+        "meter_rce": 0.506411
+      },
+      {
+        "cust_account_id": 51135,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "GAS",
+        "meter_rce": 2.04773
+      }
+    ]
+  },
+  {
+    "customer_no": "0162103",
+    "customer_name": "Liam Freyne",
+    "meters": [
+      {
+        "cust_account_id": 51378,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "GAS",
+        "meter_rce": 0.26385
+      },
+      {
+        "cust_account_id": 51377,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "POWER",
+        "meter_rce": 0.190647
+      }
+    ]
+  },
+  {
+    "customer_no": "0162568",
+    "customer_name": "JULENESTEELE-FOWLKES",
+    "meters": [
+      {
+        "cust_account_id": 51860,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "CLOSED",
+        "product_type_code": "GAS",
+        "meter_rce": 0.04708
+      },
+      {
+        "cust_account_id": 73365,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "GAS",
+        "meter_rce": 0.04708
+      },
+      {
+        "cust_account_id": 51655,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "CLOSED",
+        "product_type_code": "POWER",
+        "meter_rce": 0.151413
+      },
+      {
+        "cust_account_id": 63871,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "POWER",
+        "meter_rce": 0.151413
+      }
+    ]
+  },
+  {
+    "customer_no": "0162640",
+    "customer_name": "Yoselin Reyes",
+    "meters": [
+      {
+        "cust_account_id": 51761,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "POWER",
+        "meter_rce": 0.16266
+      },
+      {
+        "cust_account_id": 51762,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "GAS",
+        "meter_rce": 0.09835
+      }
+    ]
+  },
+  {
+    "customer_no": "0162646",
+    "customer_name": "PRISCILLA THOMAS",
+    "meters": [
+      {
+        "cust_account_id": 51773,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "GAS",
+        "meter_rce": 0.01931
+      },
+      {
+        "cust_account_id": 649008,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "POWER",
+        "meter_rce": 0.245202
+      }
+    ]
+  },
+  {
+    "customer_no": "0162956",
+    "customer_name": "Eric Hicks",
+    "meters": [
+      {
+        "cust_account_id": 51996,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "POWER",
+        "meter_rce": 0.196691
+      },
+      {
+        "cust_account_id": 51997,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "GAS",
+        "meter_rce": 0.01338
+      }
+    ]
+  },
+  {
+    "customer_no": "0163357",
+    "customer_name": "Louisa Bell",
+    "meters": [
+      {
+        "cust_account_id": 52269,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "POWER",
+        "meter_rce": 0.593473
+      },
+      {
+        "cust_account_id": 57489,
+        "utility_code": "CON_EDISON",
+        "accnt_status_code": "SWITCHED",
+        "product_type_code": "GAS",
+        "meter_rce": 0.89754
+      }
+    ]
+  }
+]
