@@ -22,12 +22,12 @@ const phonebook = {
     },
     {
       name: "Anton",
-      number: "347435343",
+      number: "347-435-3433",
       id: 4,
     },
     {
       name: "Maria",
-      number: "348735",
+      number: "011-380-74-1223",
       id: 5,
     },
   ],
@@ -49,6 +49,12 @@ app.post("/api/persons", (req, rsp) => {
   if (!newPerson.name || !newPerson.number) {
     return rsp.status(404).json({
       error: "missing customer details",
+    });
+  }
+
+  if (phonebook.persons.find((person) => person.name === newPerson.name)) {
+    return rsp.status(422).json({
+      "not-allowed": "name must be unique to the list",
     });
   }
 
