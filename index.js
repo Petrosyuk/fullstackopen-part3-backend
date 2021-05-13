@@ -1,5 +1,7 @@
+require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
+const Person = require("./models/person");
 const cors = require("cors");
 
 const PORT = process.env.PORT || 3001;
@@ -25,98 +27,81 @@ app.use(
   })
 );
 
-const phonebook = {
-  persons: [
-    {
-      name: "Arto Hellas",
-      number: "040-123456",
-      id: 1,
-    },
-    {
-      name: "Ada Lovelace",
-      number: "39-44-5323523",
-      id: 2,
-    },
-    {
-      name: "Dan Abramov",
-      number: "12-43-234345",
-      id: 3,
-    },
-    {
-      name: "Anton",
-      number: "347-435-3433",
-      id: 4,
-    },
-    {
-      name: "Maria",
-      number: "011-380-74-1223",
-      id: 5,
-    },
-  ],
-};
-
-// Utility Funcs
-const generateRandomId = () => {
-  return Math.floor(Math.random() * 100000);
-};
-//
-
 app.get("/api/persons", (req, rsp) => {
-  rsp.status(200).json(phonebook.persons);
+  Person.find({})
+    .then((persons) => rsp.status(200).json(persons))
+    .catch((err) =>
+      rsp.status(400).json({
+        error: "cannot establish db connection",
+      })
+    );
 });
 
 app.post("/api/persons", (req, rsp) => {
   const newPerson = req.body;
 
+  //Check object validity
   if (!newPerson.name || !newPerson.number) {
     return rsp.status(404).json({
       error: "missing customer details",
     });
   }
 
-  if (phonebook.persons.find((person) => person.name === newPerson.name)) {
-    return rsp.status(422).json({
-      "not-allowed": "name must be unique to the list",
-    });
-  }
-
-  const newPersonObject = {
+  // Save new person
+  const person = new Person({
     name: newPerson.name,
     number: newPerson.number,
-    id: generateRandomId(),
-  };
+  });
 
-  phonebook.persons = phonebook.persons.concat(newPersonObject);
-
-  rsp.status(201).json(phonebook.persons);
+  person
+    .save()
+    .then((savedPerson) => rsp.status(201).json(savedPerson))
+    .catch((err) => {
+      console.log(err);
+      rsp.status(400).json({
+        error: "cannot save to db",
+      });
+    });
 });
 
 app.get("/api/persons/:id", (req, rsp) => {
-  const requestId = Number(req.params.id);
-  const personData = phonebook.persons.find(
-    (person) => person.id === requestId
-  );
+  const requestId = req.params.id;
 
-  if (personData) {
-    return rsp.status(200).json(personData);
-  }
-  rsp.status(404).json({ error: "item not found" });
+  Person.findById(requestId)
+    .then((foundPerson) => rsp.status(200).json(foundPerson))
+    .catch((err) => {
+      rsp.status(404).json({
+        error: "item not found",
+      });
+    });
+});
+
+app.patch("/api/persons/:id", (req, rsp) => {
+  const requestId = req.params.id;
+  const updatedPerson = req.body;
+
+  Person.findByIdAndUpdate({ _id: requestId }, updatedPerson, { new: true })
+    .then((patchedPerson) => rsp.status(200).json(patchedPerson))
+    .catch((err) => rsp.status(400).end());
 });
 
 app.delete("/api/persons/:id", (req, rsp) => {
-  const requestId = Number(req.params.id);
-  phonebook.persons = phonebook.persons.filter(
-    (person) => person.id !== requestId
-  );
-  rsp.status(204).end();
+  const requestId = req.params.id;
+
+  Person.findByIdAndDelete(requestId).then((success) => {
+    rsp.status(204).end();
+  });
 });
 
 app.get("/info", (req, rsp) => {
-  const phonebookLen = phonebook.persons.length;
   const now = new Date();
 
-  rsp.send(`<h3> Phoneboook has info for ${phonebookLen} people</h3>
+  Person.estimatedDocumentCount().then((personCount) => {
+    const phonebookLen = personCount;
+    console.log(phonebookLen);
+    rsp.send(`<h3> Phoneboook has info for ${phonebookLen} people</h3>
             <br> ${now}`);
+  });
 });
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

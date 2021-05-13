@@ -1,0 +1,7 @@
+PATCH  http://localhost:3001/api/persons/609c6805c671290e6b4aaf55
+Content-Type: application/json
+
+{
+    "name":"Maria",
+    "number":"380-000-1213"
+}
