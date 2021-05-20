@@ -1,8 +1,10 @@
 require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
-const Person = require("./models/person");
 const cors = require("cors");
+const errorHandler = require("./middleware/errorHandler");
+
+const Person = require("./models/person");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -64,16 +66,12 @@ app.post("/api/persons", (req, rsp) => {
     });
 });
 
-app.get("/api/persons/:id", (req, rsp) => {
+app.get("/api/persons/:id", (req, rsp, next) => {
   const requestId = req.params.id;
 
   Person.findById(requestId)
     .then((foundPerson) => rsp.status(200).json(foundPerson))
-    .catch((err) => {
-      rsp.status(404).json({
-        error: "item not found",
-      });
-    });
+    .catch((err) => next(err));
 });
 
 app.patch("/api/persons/:id", (req, rsp) => {
@@ -85,12 +83,14 @@ app.patch("/api/persons/:id", (req, rsp) => {
     .catch((err) => rsp.status(400).end());
 });
 
-app.delete("/api/persons/:id", (req, rsp) => {
+app.delete("/api/persons/:id", (req, rsp, next) => {
   const requestId = req.params.id;
 
-  Person.findByIdAndDelete(requestId).then((success) => {
-    rsp.status(204).end();
-  });
+  Person.findByIdAndDelete(requestId)
+    .then((success) => {
+      rsp.status(204).end();
+    })
+    .catch((err) => next(err));
 });
 
 app.get("/info", (req, rsp) => {
@@ -104,4 +104,5 @@ app.get("/info", (req, rsp) => {
   });
 });
 
+app.use(errorHandler);
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
