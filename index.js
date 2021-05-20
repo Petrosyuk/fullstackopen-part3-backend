@@ -39,15 +39,15 @@ app.get("/api/persons", (req, rsp) => {
     );
 });
 
-app.post("/api/persons", (req, rsp) => {
+app.post("/api/persons", (req, rsp, next) => {
   const newPerson = req.body;
 
   //Check object validity
-  if (!newPerson.name || !newPerson.number) {
-    return rsp.status(404).json({
-      error: "missing customer details",
-    });
-  }
+  // if (!newPerson.name || !newPerson.number) {
+  //   return rsp.status(404).json({
+  //     error: "missing customer details",
+  //   });
+  // }
 
   // Save new person
   const person = new Person({
@@ -58,12 +58,7 @@ app.post("/api/persons", (req, rsp) => {
   person
     .save()
     .then((savedPerson) => rsp.status(201).json(savedPerson))
-    .catch((err) => {
-      console.log(err);
-      rsp.status(400).json({
-        error: "cannot save to db",
-      });
-    });
+    .catch((err) => next(err));
 });
 
 app.get("/api/persons/:id", (req, rsp, next) => {
